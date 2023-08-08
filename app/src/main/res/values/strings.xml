@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FootPrint</string>
+    <string name="AverageHuman">*Среднее потребление человека за год: <b />
+    Электроэнергии - 1100 кВт, <b />
+    Воды - 157000 кубометров воды.</string>
 </resources>
