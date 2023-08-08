@@ -1,20 +1,21 @@
 package ru.wwerlosh.footprint
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import ru.wwerlosh.footprint.ui.theme.FootPrintTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        if (savedInstanceState == null) {
+            // При запуске приложения добавляем первый фрагмент (firstBlockFragment) в контейнер
+            val firstBlockFragment = FirstBlockFragment() // Замените FirstBlockFragment на ваш фрагмент
+            val fragmentTransaction = supportFragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, firstBlockFragment)
+            fragmentTransaction.addToBackStack(null) // Добавьте фрагмент в стек возврата, если нужно
+            fragmentTransaction.commit()
+        }
     }
 }
