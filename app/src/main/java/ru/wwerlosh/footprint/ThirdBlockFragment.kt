@@ -10,7 +10,8 @@ import androidx.fragment.app.Fragment
 
 class ThirdBlockFragment : Fragment(){
     final val LOSSFACTOR = 0.23314
-    final val EMISSIONCOEFFICIENT = 0.344
+    final val WATEREMISSIONCOEFFICIENT = 0.344
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -25,8 +26,8 @@ class ThirdBlockFragment : Fragment(){
         val inputWater = view.findViewById<EditText>(R.id.inputWater)
         val thirdBlockButton = view.findViewById<Button>(R.id.thirdBlockConfirm)
 
-//        val finalElectricity = EM
-        val finalWaterEmission = EMISSIONCOEFFICIENT * inputWater.text.toString().toInt()
+        val finalElectricity = LOSSFACTOR * inputElectricity.text.toString().toInt()
+        val finalWaterEmission = WATEREMISSIONCOEFFICIENT * inputWater.text.toString().toInt()
 
         thirdBlockButton.setOnClickListener {
 
