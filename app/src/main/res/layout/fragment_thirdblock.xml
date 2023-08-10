@@ -41,7 +41,7 @@
         android:fontFamily="@font/archivo_black"
         android:hint="Потребление кВт электричества (в год)"
         android:inputType="text"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText2"
+        app:layout_constraintBottom_toTopOf="@+id/inputUsageDays"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
