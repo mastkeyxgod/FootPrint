@@ -26,23 +26,32 @@ class ThirdBlockFragment : Fragment(){
         val inputWater = view.findViewById<EditText>(R.id.inputWater)
         val thirdBlockButton = view.findViewById<Button>(R.id.thirdBlockConfirm)
 
-        val finalElectricity = LOSS_FACTOR * inputElectricity.text.toString().toInt()
-        val finalWaterEmission = WATER_REMISSION_COEFFICIENT * inputWater.text.toString().toInt()
-
         thirdBlockButton.setOnClickListener {
+            val electricity = inputElectricity.text.toString()
+            val water = inputWater.text.toString()
 
+            if (electricity.isEmpty()) {
+                inputElectricity.setBackgroundResource(R.drawable.spinner_border_red)
+                return@setOnClickListener
+            } else {
+                inputElectricity.setBackgroundResource(R.drawable.spinner_border)
+            }
+            if (water.isEmpty()) {
+                inputWater.setBackgroundResource(R.drawable.spinner_border_red)
+                return@setOnClickListener
+            } else {
+                inputWater.setBackgroundResource(R.drawable.spinner_border)
+            }
+
+            val finalElectricity = LOSS_FACTOR * electricity.toInt()
+            val finalWaterEmission = WATER_REMISSION_COEFFICIENT * water.toInt()
+            println("$finalElectricity $finalWaterEmission")
             val fourthBlockFragment = FourthBlockFragment()
-
             val fragmentManager = requireActivity().supportFragmentManager
-
             val fragmentTransaction = fragmentManager.beginTransaction()
-
             fragmentTransaction.replace(R.id.fragmentContainer, fourthBlockFragment)
-
             fragmentTransaction.addToBackStack(null)
-
             fragmentTransaction.commit()
-
         }
     }
 }

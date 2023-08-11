@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
@@ -25,7 +26,7 @@ class SecondBlockFragment : Fragment() {
         "Мотоцикл" to mapOf("Дизель" to 0.0, "Бензин" to 0.08277, "Смешанное топливо" to 0.0, "Электричество" to 0.0)
     )
 
-    val transportEmission = 0
+    var transportEmission = 0.0
     var selectedFuelType: String? = null
     var selectedCarType: String? = null
     override fun onCreateView(
@@ -86,13 +87,20 @@ class SecondBlockFragment : Fragment() {
         }
         val inputMileage = view.findViewById<EditText>(R.id.inputMileage)
         val inputUsageDays = view.findViewById<EditText>(R.id.inputUsageDays)
+        val carCheckBox = view.findViewById<CheckBox>(R.id.carCheckBox)
 
         val secondBlockButton = view.findViewById<Button>(R.id.secondBlockButton)
         secondBlockButton.setOnClickListener {
+            if (carCheckBox.isChecked) {
+                val thirdBlockFragment = ThirdBlockFragment()
+                val fragmentManager = requireActivity().supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.fragmentContainer, thirdBlockFragment)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
             val mileage = inputMileage.text.toString()
             val usageDays = inputUsageDays.text.toString()
-            println(mileage)
-            println(usageDays)
             if (selectedCarType == "Выберите тип автомобиля") {
                 carTypeSpinner.setBackgroundResource(R.drawable.spinner_border_red)
                 carTypeSpinner.prompt = "Выберите тип автомобиля"
@@ -127,7 +135,21 @@ class SecondBlockFragment : Fragment() {
             } else {
                 inputUsageDays.setBackgroundResource(R.drawable.spinner_border)
             }
+            val emissionCoefficient = carFuelData[selectedCarType]?.get(selectedFuelType)
+            if (emissionCoefficient != null) {
+                transportEmission = (emissionCoefficient *
+                        inputMileage.text.toString().toDouble() *
+                        inputUsageDays.text.toString().toDouble())
+            }
+            println(transportEmission)
+            val thirdBlockFragment = ThirdBlockFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, thirdBlockFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
         }
+
     }
 
 }
