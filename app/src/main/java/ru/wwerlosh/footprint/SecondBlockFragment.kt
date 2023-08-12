@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 
@@ -123,17 +124,21 @@ class SecondBlockFragment : Fragment() {
             if (mileage.isEmpty()) {
                 inputMileage.setBackgroundResource(R.drawable.spinner_border_red)
                 inputMileage.hint = "Введите пробег"
+                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                 return@setOnClickListener
             } else {
                 inputMileage.setBackgroundResource(R.drawable.spinner_border)
+                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             }
 
             if (usageDays.isEmpty()) {
                 inputUsageDays.setBackgroundResource(R.drawable.spinner_border_red)
                 inputUsageDays.hint = "Введите количество дней"
+                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                 return@setOnClickListener
             } else {
                 inputUsageDays.setBackgroundResource(R.drawable.spinner_border)
+                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             }
             val emissionCoefficient = carFuelData[selectedCarType]?.get(selectedFuelType)
             if (emissionCoefficient != null) {
