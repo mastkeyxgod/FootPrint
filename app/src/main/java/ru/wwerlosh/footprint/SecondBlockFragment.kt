@@ -99,6 +99,7 @@ class SecondBlockFragment : Fragment() {
                 fragmentTransaction.replace(R.id.fragmentContainer, thirdBlockFragment)
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+                return@setOnClickListener
             }
             val mileage = inputMileage.text.toString()
             val usageDays = inputUsageDays.text.toString()
