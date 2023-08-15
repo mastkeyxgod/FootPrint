@@ -23,7 +23,7 @@
         app:layout_constraintTop_toBottomOf="@+id/inputPublicCarMileage" />
 
     <Button
-        android:id="@+id/fourthBlockConfirm"
+        android:id="@+id/fourthBlockButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
