@@ -10,10 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import ru.wwerlosh.footprint.util.GlobalData
 
 class FourthBlockFragment : Fragment(){
-
     final val TAXI_COEFFICIENT = 0.20369
     final val BUS_COEFFICIENT = 0.1195
     var selectedCarType: String? = null
@@ -87,7 +89,9 @@ class FourthBlockFragment : Fragment(){
             transportEmission = (emissionCoefficient *
                     inputMileage.text.toString().toDouble() *
                     inputUsageDays.text.toString().toDouble())
-            println(transportEmission)
+
+            GlobalData.total += transportEmission
+
             val fifthBlockFragment = FifthBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

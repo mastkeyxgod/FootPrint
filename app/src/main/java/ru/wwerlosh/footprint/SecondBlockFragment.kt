@@ -11,10 +11,13 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
+import androidx.fragment.app.viewModels
+import ru.wwerlosh.footprint.util.GlobalData
 
 class SecondBlockFragment : Fragment() {
+
     private val carFuelData = mapOf(
         "Седан" to mapOf("Дизель" to 0.20419, "Бензин" to 0.27807, "Смешанное топливо" to 0.1448, "Электричество" to 0.0),
         "Пикап" to mapOf("Дизель" to 0.20419, "Бензин" to 0.27807, "Смешанное топливо" to 0.1448, "Электричество" to 0.0),
@@ -147,7 +150,9 @@ class SecondBlockFragment : Fragment() {
                         inputMileage.text.toString().toDouble() *
                         inputUsageDays.text.toString().toDouble())
             }
-            println(transportEmission)
+            GlobalData.total += transportEmission
+
+
             val thirdBlockFragment = ThirdBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

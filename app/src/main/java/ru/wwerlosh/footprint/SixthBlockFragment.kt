@@ -8,7 +8,10 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import ru.wwerlosh.footprint.util.GlobalData
 
 class SixthBlockFragment : Fragment() {
     final val TRAIN_COEFFICIENT = 0.03694
@@ -45,6 +48,11 @@ class SixthBlockFragment : Fragment() {
                 inputTrain.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                 return@setOnClickListener
             }
+
+            val finalTrainEmission = inputTrainText.toInt() * TRAIN_COEFFICIENT
+
+            GlobalData.total += finalTrainEmission
+
             val seventhBlockFragment = SeventhBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

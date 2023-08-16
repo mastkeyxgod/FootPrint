@@ -51,7 +51,7 @@
         android:layout_height="74dp"
         android:layout_marginTop="104dp"
         android:fontFamily="@font/archivo_black"
-        android:text="@string/trainDescription"
+        android:text="Если вы совершали поездки, то стоит указать это, отметив общее время, проведенное в пути"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.592"

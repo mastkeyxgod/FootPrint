@@ -8,10 +8,12 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import ru.wwerlosh.footprint.util.GlobalData
 
 class FifthBlockFragment : Fragment() {
-
     final val AIRCRAFT_COEFFICIENT = 0.2443
 
     override fun onCreateView(
@@ -27,10 +29,6 @@ class FifthBlockFragment : Fragment() {
         val inputAir = view.findViewById<EditText>(R.id.inputAir)
         val fifthButton = view.findViewById<Button>(R.id.fifthBlockConfirm)
         val airCheckBox = view.findViewById<CheckBox>(R.id.airCheckBox)
-//        val finalAirEmission = inputAir.text.toString().toInt() * AIRCRAFT_COEFFICIENT
-
-
-
 
         fifthButton.setOnClickListener {
             val inputAirText = inputAir.text.toString();
@@ -46,11 +44,13 @@ class FifthBlockFragment : Fragment() {
 
             if (inputAirText.isEmpty()) {
                 inputAir.setBackgroundResource(R.drawable.spinner_border_red)
-                inputAir.hint = "Введите кол-ва часов"
+                inputAir.hint = "Введите кол-во часов"
                 inputAir.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                 return@setOnClickListener
             }
+            val finalAirEmission = inputAirText.toInt() * AIRCRAFT_COEFFICIENT
 
+            GlobalData.total += finalAirEmission
 
             val sixthBlockFragment = SixthBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager

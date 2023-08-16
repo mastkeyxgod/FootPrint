@@ -6,7 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import ru.wwerlosh.footprint.util.GlobalData
 
 class ThirdBlockFragment : Fragment(){
     final val LOSS_FACTOR = 0.23314
@@ -45,7 +48,10 @@ class ThirdBlockFragment : Fragment(){
 
             val finalElectricity = LOSS_FACTOR * electricity.toInt()
             val finalWaterEmission = WATER_REMISSION_COEFFICIENT * water.toInt()
-            println("$finalElectricity $finalWaterEmission")
+            val finalEmission = finalWaterEmission + finalElectricity
+
+            GlobalData.total += finalEmission
+
             val fourthBlockFragment = FourthBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

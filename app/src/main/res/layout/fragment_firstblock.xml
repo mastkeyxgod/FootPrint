@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,12 +9,15 @@
         android:id="@+id/welcomeText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200sp"
-        android:layout_marginBottom="150sp"
+        android:layout_marginTop="100dp"
         android:fontFamily="@font/archivo_black"
         android:text="FootPrint"
+        android:textAlignment="center"
         android:textSize="34sp"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputNameSpace"
@@ -23,7 +27,8 @@
         android:ems="10"
         android:hint="Введите ваше имя"
         android:inputType="text"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
     <EditText
         android:id="@+id/inputTownSpace"
@@ -33,18 +38,74 @@
         android:ems="10"
         android:hint="Введите город проживания"
         android:inputType="text"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        app:layout_constraintTop_toBottomOf="@+id/inputNameSpace" />
+
+    <EditText
+        android:id="@+id/inputAgeSpace"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:alpha="0.35"
+        android:ems="10"
+        android:hint="Введите ваш возраст"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputTownSpace" />
 
     <Button
         android:id="@+id/firstInformationConfirmButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="40sp"
-        android:layout_marginTop="20sp"
-        android:layout_marginRight="40sp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"
         android:background="#4DB3A9"
         android:fontFamily="@font/archivo_black"
         android:text="Подтвердить"
         android:textColor="#FFFFFF"
-        android:textStyle="bold" />
-</LinearLayout>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/sexRadioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sexTextView">
+
+        <RadioButton
+            android:id="@+id/femaleSexButton"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:text="Женщина"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/maleSexButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Мужчина"
+            android:textSize="20sp" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/sexTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
+        android:text="Ваш пол:"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputAgeSpace" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
