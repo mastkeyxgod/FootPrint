@@ -8,9 +8,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import ru.wwerlosh.footprint.util.GlobalData
 
 class SixthBlockFragment : Fragment() {
@@ -26,8 +24,8 @@ class SixthBlockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val sixthButton = view.findViewById<Button>(R.id.sixthBlockConfirm)
-        val inputTrain = view.findViewById<EditText>(R.id.inputTrain)
+        val sixthButton = view.findViewById<Button>(R.id.seventhBlockConfirm)
+        val inputTrain = view.findViewById<EditText>(R.id.inputMoneyForGoods)
         val trainCheckBox = view.findViewById<CheckBox>(R.id.trainCheckBox)
 
         sixthButton.setOnClickListener {
