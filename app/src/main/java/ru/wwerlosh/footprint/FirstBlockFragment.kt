@@ -81,7 +81,7 @@ class FirstBlockFragment : Fragment() {
             }
             GlobalData.name = name
             GlobalData.town = town
-            GlobalData.age = age
+            GlobalData.age = age.toInt()
             GlobalData.sex = sex
             val secondBlockFragment = SecondBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
