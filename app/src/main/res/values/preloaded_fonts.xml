@@ -2,5 +2,12 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/archivo_black</item>
+        <item>@font/carme</item>
+        <item>@font/exo_2</item>
+        <item>@font/exo_2_thin</item>
+        <item>@font/krona_one</item>
+        <item>@font/manrope_medium</item>
+        <item>@font/manrope_semibold</item>
+        <item>@font/michroma</item>
     </array>
 </resources>

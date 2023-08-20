@@ -13,6 +13,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="FootPrint"
         android:textAlignment="center"
+        android:textColor="#7BA39F"
         android:textSize="34sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -28,6 +29,7 @@
         android:hint="Введите ваше имя"
         android:inputType="text"
         android:textAlignment="center"
+        android:textColor="#000000"
         app:layout_constraintTop_toBottomOf="@+id/welcomeText" />
 
     <EditText

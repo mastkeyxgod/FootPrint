@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/archivo_black"
+        android:fontFamily="@font/manrope_semibold"
         android:text="Коммунальные услуги"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="25dp"
         android:ems="10"
         android:hint="Потребление кВт электричества (в год)"
@@ -44,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         tools:ignore="MissingConstraints,UnknownIdInLayout" />
 
     <EditText
@@ -52,7 +51,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="25dp"
         android:ems="10"
         android:hint="Выброс кубометров воды (в год)"
@@ -61,19 +59,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputElectro"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:text="@string/AverageHuman"
-        android:textAlignment="center"
-        android:textSize="18sp"
+        android:textAlignment="gravity"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputWater" />
 
@@ -93,5 +91,26 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        style="@style/textViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="Сколько электричества вы потребляете в месяц? (в кВт)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView9"
+        style="@style/textViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Сколько воды вы используете в месяц? (в кубометрах)"
+        app:layout_constraintTop_toBottomOf="@+id/inputElectro"
+        tools:layout_editor_absoluteX="174dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

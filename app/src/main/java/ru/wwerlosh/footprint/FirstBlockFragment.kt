@@ -22,7 +22,6 @@ class FirstBlockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Получение ссылок на View-элементы вашего макета
         val inputNameSpace = view.findViewById<EditText>(R.id.inputNameSpace)
         val inputTownSpace = view.findViewById<EditText>(R.id.inputTownSpace)
         val inputAgeSpace = view.findViewById<EditText>(R.id.inputAgeSpace)
