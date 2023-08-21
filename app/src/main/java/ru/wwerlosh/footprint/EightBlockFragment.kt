@@ -19,8 +19,6 @@ import ru.wwerlosh.footprint.util.GlobalData
 
 class EightBlockFragment : Fragment() {
 
-
-
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +33,8 @@ class EightBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
 
         val lastBlockConfirm = view.findViewById<Button>(R.id.lastBlockConfirm)
         val totalEmissionTextView = view.findViewById<TextView>(R.id.totalEmissionTextView)
@@ -60,7 +60,9 @@ class EightBlockFragment : Fragment() {
         editor.apply()
 
 
-        writeToDatabase()
+        if(!GlobalData.isDataSaved) {
+            writeToDatabase()
+        }
 
         lastBlockConfirm.setOnClickListener {
             val secondBlockFragment = SecondBlockFragment()

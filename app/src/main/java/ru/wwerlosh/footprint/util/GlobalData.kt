@@ -6,4 +6,5 @@ object GlobalData {
     var town: String = "none"
     var age: Int = 0
     var sex: String = "none"
+    var isDataSaved: Boolean = true;
 }

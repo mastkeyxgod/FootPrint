@@ -24,6 +24,8 @@ class SixthBlockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         val sixthButton = view.findViewById<Button>(R.id.seventhBlockConfirm)
         val inputTrain = view.findViewById<EditText>(R.id.inputMoneyForGoods)
         val trainCheckBox = view.findViewById<CheckBox>(R.id.trainCheckBox)
