@@ -40,6 +40,7 @@ class FifthBlockFragment : Fragment() {
                 fragmentTransaction.replace(R.id.fragmentContainer, sixthBlockFragment)
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+                return@setOnClickListener
             }
 
             if (inputAirText.isEmpty()) {

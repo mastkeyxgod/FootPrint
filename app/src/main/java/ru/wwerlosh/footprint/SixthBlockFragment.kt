@@ -38,6 +38,7 @@ class SixthBlockFragment : Fragment() {
                 fragmentTransaction.replace(R.id.fragmentContainer, seventhBlockFragment)
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
+                return@setOnClickListener
             }
 
             if (inputTrainText.isEmpty()) {
