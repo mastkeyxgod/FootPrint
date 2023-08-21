@@ -22,6 +22,5 @@ object SQLHelper {
         }catch (e: SQLException) {
             e.printStackTrace()
         }
-
     }
 }

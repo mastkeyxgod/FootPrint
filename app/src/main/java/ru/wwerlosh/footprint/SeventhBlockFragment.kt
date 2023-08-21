@@ -33,6 +33,8 @@ class SeventhBlockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        GlobalData.isDataSaved = false
+
         val inputMoneyForGoods = view.findViewById<EditText>(R.id.inputMoneyForGoods)
         val goodsRadioGroup = view.findViewById<RadioGroup>(R.id.goodsRadioGroup)
         var typeOfGoods: Double = 0.0
