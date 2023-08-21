@@ -5,6 +5,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/sevengthblock_fragment" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

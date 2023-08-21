@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/lastblock_fragment" />
+
     <Button
         android:id="@+id/lastBlockConfirm"
         android:layout_width="match_parent"
@@ -55,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:text="Ваш углеродный след за последний месяц составил:"
+        android:text="ваш углеродный след за последний месяц составил:"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
