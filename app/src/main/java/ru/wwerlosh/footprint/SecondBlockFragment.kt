@@ -44,7 +44,6 @@ class SecondBlockFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val carTypeSpinner: Spinner = view.findViewById(R.id.carTypeSpinner)
-        carTypeSpinner.setBackgroundResource(R.drawable.spinner_border)
         val carTypes = arrayOf(
             "Выберите тип автомобиля",
             "Седан",
@@ -70,7 +69,6 @@ class SecondBlockFragment : Fragment() {
         }
 
         val fuelTypeSpinner: Spinner = view.findViewById(R.id.fuelTypeSpinner)
-        fuelTypeSpinner.setBackgroundResource(R.drawable.spinner_border)
         val fuelTypes = arrayOf(
             "Выберите тип топлива",
             "Дизель",
@@ -107,42 +105,20 @@ class SecondBlockFragment : Fragment() {
             val mileage = inputMileage.text.toString()
             val usageDays = inputUsageDays.text.toString()
             if (selectedCarType == "Выберите тип автомобиля") {
-                carTypeSpinner.setBackgroundResource(R.drawable.spinner_border_red)
-                carTypeSpinner.prompt = "Выберите тип автомобиля"
                 return@setOnClickListener
-            } else {
-                carTypeSpinner.setBackgroundResource(R.drawable.spinner_border)
-                carTypeSpinner.prompt = null
             }
 
             if (selectedFuelType == "Выберите тип топлива") {
-                fuelTypeSpinner.setBackgroundResource(R.drawable.spinner_border_red)
-                fuelTypeSpinner.prompt = "Выберите тип топлива"
                 return@setOnClickListener
-            } else {
-                fuelTypeSpinner.setBackgroundResource(R.drawable.spinner_border)
-                fuelTypeSpinner.prompt = null
             }
 
             // Проверка на пустое поле
             if (mileage.isEmpty()) {
-                inputMileage.setBackgroundResource(R.drawable.spinner_border_red)
-                inputMileage.hint = "Введите пробег"
-                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                 return@setOnClickListener
-            } else {
-                inputMileage.setBackgroundResource(R.drawable.spinner_border)
-                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             }
 
             if (usageDays.isEmpty()) {
-                inputUsageDays.setBackgroundResource(R.drawable.spinner_border_red)
-                inputUsageDays.hint = "Введите количество дней"
-                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.red))
                 return@setOnClickListener
-            } else {
-                inputUsageDays.setBackgroundResource(R.drawable.spinner_border)
-                inputMileage.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             }
             val emissionCoefficient = carFuelData[selectedCarType]?.get(selectedFuelType)
             if (emissionCoefficient != null) {

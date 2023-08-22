@@ -147,6 +147,6 @@
         android:layout_height="80dp"
         app:layout_constraintBottom_toBottomOf="@+id/welcomeText"
         app:layout_constraintEnd_toStartOf="@+id/welcomeText"
-        app:srcCompat="@drawable/footprint_icon" />
+        app:srcCompat="@drawable/footprint_pic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

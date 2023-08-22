@@ -20,4 +20,13 @@ class MainActivity : AppCompatActivity() {
             fragmentTransaction.commit()
         }
     }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount == 1) {
+            // Если на первом фрагменте, то закрыть приложение
+            finish()
+        } else {
+            super.onBackPressed()
+        }
+    }
 }
