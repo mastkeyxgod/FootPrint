@@ -62,7 +62,9 @@ class EightBlockFragment : Fragment() {
 
         if(!GlobalData.isDataSaved) {
             writeToDatabase()
+            GlobalData.isDataSaved = true
         }
+
 
         lastBlockConfirm.setOnClickListener {
             val secondBlockFragment = SecondBlockFragment()
