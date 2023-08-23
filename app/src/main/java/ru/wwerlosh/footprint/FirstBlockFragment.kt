@@ -1190,6 +1190,9 @@ class FirstBlockFragment : Fragment() {
 //        }
 
         val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
+        val toast = Toast(requireContext())
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
         val inputNameSpace = view.findViewById<EditText>(R.id.inputNameSpace)
         val inputAgeSpace = view.findViewById<EditText>(R.id.inputAgeSpace)
         val sexRadioGroup = view.findViewById<RadioGroup>(R.id.sexRadioGroup)
@@ -1224,9 +1227,7 @@ class FirstBlockFragment : Fragment() {
                 spannable.setSpan(colorSpan2, 2, 20, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
 
                 inputNameSpace.hint = spannable
-                val toast = Toast(requireContext())
-                toast.duration = Toast.LENGTH_SHORT
-                toast.view = layout
+
                 toast.show()
                 return@setOnClickListener
             }
@@ -1242,7 +1243,7 @@ class FirstBlockFragment : Fragment() {
                 spannable.setSpan(colorSpan2, 2, 27, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
 
                 inputTownSpace.hint = spannable
-                Toast.makeText(requireContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show()
+                toast.show()
                 return@setOnClickListener
             }
 
@@ -1257,7 +1258,7 @@ class FirstBlockFragment : Fragment() {
                 spannable.setSpan(colorSpan2, 2, 22, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
 
                 inputAgeSpace.hint = spannable
-                Toast.makeText(requireContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show()
+                toast.show()
                 return@setOnClickListener
             }
 
@@ -1272,7 +1273,7 @@ class FirstBlockFragment : Fragment() {
                 spannable.setSpan(colorSpan2, 2, 10, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
 
                 sexTextView.text = spannable
-                Toast.makeText(requireContext(), "Не все обязательные поля заполнены", Toast.LENGTH_SHORT).show()
+                toast.show()
                 return@setOnClickListener
             }
 

@@ -19,6 +19,8 @@ import ru.wwerlosh.footprint.util.GlobalData
 
 class EightBlockFragment : Fragment() {
 
+    private val AVG_VALUE: Double = 176.32
+
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +37,20 @@ class EightBlockFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-
+        val conclusionTextView = view.findViewById<TextView>(R.id.conclusionTextView)
+        val conclusionButton = view.findViewById<Button>(R.id.conclusionButton)
         val lastBlockConfirm = view.findViewById<Button>(R.id.lastBlockConfirm)
         val totalEmissionTextView = view.findViewById<TextView>(R.id.totalEmissionTextView)
         val nameTextView = view.findViewById<TextView>(R.id.nameTextView)
         val formattedTotal = String.format("%.1f", GlobalData.total)
         totalEmissionTextView.text = formattedTotal
         nameTextView.text = GlobalData.name
+
+//        if (GlobalData.total > AVG_VALUE) {
+//            conclusionTextView.text = resources.getString(R.string.bad_conclusion)
+//            conclusionButton.visibility = View.VISIBLE
+//        }
+//        else conclusionTextView.text = R.string.good_conclusion.toString()
 
         // Получите объект SharedPreferences
         val sharedPreferences = requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)
@@ -59,8 +68,9 @@ class EightBlockFragment : Fragment() {
 // Примените изменения
         editor.apply()
 
-
+        println(GlobalData.isDataSaved)
         if(!GlobalData.isDataSaved) {
+            println("YES")
             writeToDatabase()
             GlobalData.isDataSaved = true
         }

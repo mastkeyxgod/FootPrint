@@ -19,7 +19,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
-        android:background="#4DB3A9"
+        android:background="@drawable/round_corners"
         android:fontFamily="@font/archivo_black"
         android:text="Посчитать заново"
         android:textColor="#FFFFFF"
@@ -78,7 +78,37 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="68dp"
         android:text="КГ CO2"
+        android:textColor="#165E57"
         android:textSize="34sp"
         app:layout_constraintStart_toEndOf="@+id/totalEmissionTextView"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <TextView
+        android:id="@+id/conclusionTextView"
+        style="@style/textViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="None"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalEmissionTextView" />
+
+    <Button
+        android:id="@+id/conclusionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="50dp"
+        android:background="@drawable/conclusion_button_style"
+        android:text="советы"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/conclusionTextView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
