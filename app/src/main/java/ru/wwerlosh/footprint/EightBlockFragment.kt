@@ -46,11 +46,11 @@ class EightBlockFragment : Fragment() {
         totalEmissionTextView.text = formattedTotal
         nameTextView.text = GlobalData.name
 
-//        if (GlobalData.total > AVG_VALUE) {
-//            conclusionTextView.text = resources.getString(R.string.bad_conclusion)
-//            conclusionButton.visibility = View.VISIBLE
-//        }
-//        else conclusionTextView.text = R.string.good_conclusion.toString()
+        if (GlobalData.total > AVG_VALUE) {
+            conclusionTextView.text = resources.getString(R.string.bad_conclusion)
+            conclusionButton.visibility = View.VISIBLE
+        }
+        else conclusionTextView.text = R.string.good_conclusion.toString()
 
         // Получите объект SharedPreferences
         val sharedPreferences = requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)
