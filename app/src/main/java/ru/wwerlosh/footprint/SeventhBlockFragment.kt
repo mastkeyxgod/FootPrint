@@ -1,6 +1,10 @@
 package ru.wwerlosh.footprint
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +15,7 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import ru.wwerlosh.footprint.util.GlobalData
@@ -33,10 +38,17 @@ class SeventhBlockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
+        val toast = Toast(requireContext())
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
+
         GlobalData.isDataSaved = false
 
         val inputMoneyForGoods = view.findViewById<EditText>(R.id.inputMoneyForGoods)
         val goodsRadioGroup = view.findViewById<RadioGroup>(R.id.goodsRadioGroup)
+        val goodsTextView = view.findViewById<TextView>(R.id.goodsTextView)
+        val moneyForGoodsTextView = view.findViewById<TextView>(R.id.moneyForGoodsTextView)
         var typeOfGoods: Double = 0.0
 
         goodsRadioGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -68,20 +80,31 @@ class SeventhBlockFragment : Fragment() {
             val money = inputMoneyForGoods.text.toString()
 
             if (money.isEmpty()) {
-                inputMoneyForGoods.setBackgroundResource(R.drawable.spinner_border_red)
-                inputMoneyForGoods.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.red))
-                inputMoneyForGoods.hint = "Введите сумму"
+                val text = "*   Сколько вы тратите на продукты в неделю? (руб)"
+                val spannable = SpannableString(text)
+
+                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
+                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+
+                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
+                spannable.setSpan(colorSpan2, 2, 112, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                moneyForGoodsTextView.text = spannable
+                toast.show()
                 return@setOnClickListener
-            } else {
-                inputMoneyForGoods.setBackgroundResource(R.drawable.spinner_border)
-                inputMoneyForGoods.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             }
 
             if (typeOfGoods == 0.0) {
-                goodsRadioGroup.setBackgroundResource(R.drawable.spinner_border_red)
+                val text = "*   Кем вы себя считаете?"
+                val spannable = SpannableString(text)
+
+                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
+                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+
+                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
+                spannable.setSpan(colorSpan2, 2, 112, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                goodsTextView.text = spannable
+                toast.show()
                 return@setOnClickListener
-            } else {
-                goodsRadioGroup.setBackgroundResource(R.drawable.spinner_border)
             }
 
             val finalEmission = typeOfGoods * money.toDouble() * 4.0

@@ -12,6 +12,128 @@
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/secondblock_background" />
 
+    <LinearLayout
+        android:id="@+id/firstLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/linear_background"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+        <CheckBox
+            android:id="@+id/carCheckBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:buttonTint="#B8FAF4"
+            android:fontFamily="@font/exo_2"
+            android:text="У меня нет машины"
+            android:textColor="#FDFDFD"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/carTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/spinner_border"
+            android:paddingLeft="15dp" />
+
+        <Spinner
+            android:id="@+id/fuelTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/spinner_border"
+            android:paddingLeft="15dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/secondLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/linear_background"
+        android:orientation="vertical"
+        android:paddingBottom="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/firstLay">
+
+        <TextView
+            android:id="@+id/inputMilTextView"
+            style="@style/textViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:text="Какое расстояние (в среднем) вы проезжаете за день? (в км)"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputMileage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:alpha="0.5"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Введите расстояние"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/inputUsageDaysTextView"
+            style="@style/textViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="25dp"
+            android:text="Сколько дней в неделю в используете личный транспорт?"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/inputUsageDays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:alpha="0.5"
+            android:backgroundTint="#FFFFFF"
+            android:ems="10"
+            android:hint="Дни использования"
+            android:inputType="number"
+            android:paddingLeft="20dp"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#FFFFFF" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
@@ -24,70 +146,6 @@
         android:textSize="45sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/carTypeSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:background="#016667"
-        android:paddingLeft="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carCheckBox" />
-
-    <Spinner
-        android:id="@+id/fuelTypeSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:background="#016667"
-        android:paddingLeft="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/carTypeSpinner" />
-
-    <EditText
-        android:id="@+id/inputMileage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:alpha="0.5"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:hint="Введите расстояние"
-        android:inputType="number"
-        android:paddingLeft="20dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <EditText
-        android:id="@+id/inputUsageDays"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:alpha="0.5"
-        android:backgroundTint="#FFFFFF"
-        android:ems="10"
-        android:hint="Дни использования"
-        android:inputType="number"
-        android:paddingLeft="20dp"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <Button
         android:id="@+id/secondBlockButton"
@@ -105,22 +163,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <CheckBox
-        android:id="@+id/carCheckBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:buttonTint="#B8FAF4"
-        android:text="У меня нет машины"
-        android:textColor="#FDFDFD"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18" />
-
     <TextView
         android:id="@+id/textView18"
         android:layout_width="match_parent"
@@ -132,35 +174,5 @@
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
-
-    <TextView
-        android:id="@+id/textView6"
-        style="@style/textViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:text="Какое расстояние (в среднем) вы проезжаете за день? (в км)"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fuelTypeSpinner" />
-
-    <TextView
-        android:id="@+id/textView7"
-        style="@style/textViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:text="Сколько дней в месяц в используете личный транспорт?"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputMileage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

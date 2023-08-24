@@ -1,6 +1,11 @@
 package ru.wwerlosh.footprint
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +15,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -42,6 +49,11 @@ class SecondBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
+        val toast = Toast(requireContext())
+        toast.duration = Toast.LENGTH_SHORT
+        toast.view = layout
 
         val carTypeSpinner: Spinner = view.findViewById(R.id.carTypeSpinner)
         val carTypes = arrayOf(
@@ -88,7 +100,9 @@ class SecondBlockFragment : Fragment() {
             }
         }
         val inputMileage = view.findViewById<EditText>(R.id.inputMileage)
+        val inputMilTextView = view.findViewById<TextView>(R.id.inputMilTextView)
         val inputUsageDays = view.findViewById<EditText>(R.id.inputUsageDays)
+        val inputUsageDaysTextView = view.findViewById<TextView>(R.id.inputUsageDaysTextView)
         val carCheckBox = view.findViewById<CheckBox>(R.id.carCheckBox)
 
         val secondBlockButton = view.findViewById<Button>(R.id.secondBlockButton)
@@ -105,19 +119,41 @@ class SecondBlockFragment : Fragment() {
             val mileage = inputMileage.text.toString()
             val usageDays = inputUsageDays.text.toString()
             if (selectedCarType == "Выберите тип автомобиля") {
+                toast.show()
                 return@setOnClickListener
             }
 
             if (selectedFuelType == "Выберите тип топлива") {
+                toast.show()
                 return@setOnClickListener
             }
 
             // Проверка на пустое поле
             if (mileage.isEmpty()) {
+                val text = "*   Какое расстояние (в среднем) вы проезжаете за день? (в км)"
+                val spannable = SpannableString(text)
+
+                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
+                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+
+                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
+                spannable.setSpan(colorSpan2, 2, 62, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                inputMilTextView.text = spannable
+                toast.show()
                 return@setOnClickListener
             }
 
             if (usageDays.isEmpty()) {
+                val text = "*   Сколько дней в неделю в используете личный транспорт?"
+                val spannable = SpannableString(text)
+
+                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
+                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+
+                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
+                spannable.setSpan(colorSpan2, 2, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                inputUsageDaysTextView.text = spannable
+                toast.show()
                 return@setOnClickListener
             }
             val emissionCoefficient = carFuelData[selectedCarType]?.get(selectedFuelType)
