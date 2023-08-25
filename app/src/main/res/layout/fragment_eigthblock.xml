@@ -82,8 +82,7 @@
             android:background="@drawable/conclusion_button_style"
             android:text="советы"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:visibility="gone" />
+            android:textSize="16sp" />
     </LinearLayout>
 
     <TextView

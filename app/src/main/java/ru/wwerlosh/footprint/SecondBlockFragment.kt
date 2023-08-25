@@ -1,5 +1,6 @@
 package ru.wwerlosh.footprint
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -9,11 +10,13 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -50,6 +53,8 @@ class SecondBlockFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        GlobalData.total = 0.0
+
         val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
         val toast = Toast(requireContext())
         toast.duration = Toast.LENGTH_SHORT
@@ -68,7 +73,7 @@ class SecondBlockFragment : Fragment() {
             "Кроссовер",
             "Мотоцикл"
         )
-        val carTypeSpinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, carTypes)
+        val carTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, carTypes)
         carTypeSpinner.adapter = carTypeSpinnerAdapter
         carTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -88,7 +93,7 @@ class SecondBlockFragment : Fragment() {
             "Смешанное топливо",
             "Электричество"
         )
-        val fuelTypeSpinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, fuelTypes)
+        val fuelTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, fuelTypes)
         fuelTypeSpinner.adapter = fuelTypeSpinnerAdapter
         fuelTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -99,14 +104,41 @@ class SecondBlockFragment : Fragment() {
                 selectedFuelType = "Выберите тип топлива"
             }
         }
+
+
+
         val inputMileage = view.findViewById<EditText>(R.id.inputMileage)
         val inputMilTextView = view.findViewById<TextView>(R.id.inputMilTextView)
         val inputUsageDays = view.findViewById<EditText>(R.id.inputUsageDays)
         val inputUsageDaysTextView = view.findViewById<TextView>(R.id.inputUsageDaysTextView)
         val carCheckBox = view.findViewById<CheckBox>(R.id.carCheckBox)
-
+        val secondLay = view.findViewById<LinearLayout>(R.id.secondLay)
         val secondBlockButton = view.findViewById<Button>(R.id.secondBlockButton)
+
+        val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
+
+        carCheckBox.setOnClickListener {
+            if (carCheckBox.isChecked) {
+                carTypeSpinner.startAnimation(fadeOutAnimation)
+                fuelTypeSpinner.startAnimation(fadeOutAnimation)
+                secondLay.startAnimation(fadeOutAnimation)
+                carTypeSpinner.visibility = View.GONE
+                fuelTypeSpinner.visibility = View.GONE
+                secondLay.visibility = View.GONE
+            }
+            else {
+                carTypeSpinner.visibility = View.VISIBLE
+                fuelTypeSpinner.visibility = View.VISIBLE
+                secondLay.visibility = View.VISIBLE
+                carTypeSpinner.startAnimation(fadeInAnimation)
+                fuelTypeSpinner.startAnimation(fadeInAnimation)
+                secondLay.startAnimation(fadeInAnimation)
+            }
+        }
+
         secondBlockButton.setOnClickListener {
+
             if (carCheckBox.isChecked) {
                 val thirdBlockFragment = ThirdBlockFragment()
                 val fragmentManager = requireActivity().supportFragmentManager
@@ -116,6 +148,7 @@ class SecondBlockFragment : Fragment() {
                 fragmentTransaction.commit()
                 return@setOnClickListener
             }
+
             val mileage = inputMileage.text.toString()
             val usageDays = inputUsageDays.text.toString()
             if (selectedCarType == "Выберите тип автомобиля") {

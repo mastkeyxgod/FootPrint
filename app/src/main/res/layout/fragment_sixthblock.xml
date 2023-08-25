@@ -45,7 +45,8 @@
             android:layout_marginTop="35dp"
             android:text="Если вы совершали поездки, то стоит указать это, отметив общее время, проведенное в пути за неделю. (в часах)"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/inputMoneyForGoods"
@@ -60,7 +61,8 @@
             android:inputType="number"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="#FFFFFF"
+            android:visibility="visible" />
     </LinearLayout>
 
     <TextView

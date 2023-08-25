@@ -1155,39 +1155,39 @@ class FirstBlockFragment : Fragment() {
             "Ясный",
             "Яхрома",
         )
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, cities)
+        val adapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, cities)
         val inputTownSpace: AutoCompleteTextView = view.findViewById(R.id.inputTownSpace)
         inputTownSpace.setAdapter(adapter)
 
 
-//        val sharedPreferences = requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)
-//
-//        val name = sharedPreferences.getString("name", "")
-//        val age = sharedPreferences.getInt("age", 0)
-//        val town = sharedPreferences.getString("town", "")
-//        val sexData = sharedPreferences.getString("sex", "")
-//        val totalEmission = sharedPreferences.getFloat("totalEmission", 0.0f)
-//
-//        if (totalEmission != 0.0f) {
-//            GlobalData.total = totalEmission.toDouble()
-//            if (name != null) {
-//                GlobalData.name = name
-//            }
-//            GlobalData.age = age
-//            if (town != null) {
-//                GlobalData.town = town
-//            }
-//            if (sexData != null) {
-//                GlobalData.sex = sexData
-//            }
-//
-//            val eightBlockFragment = EightBlockFragment()
-//            val fragmentManager = requireActivity().supportFragmentManager
-//            val fragmentTransaction = fragmentManager.beginTransaction()
-//            fragmentTransaction.replace(R.id.fragmentContainer, eightBlockFragment)
-//            fragmentTransaction.addToBackStack(null)
-//            fragmentTransaction.commit()
-//        }
+        val sharedPreferences = requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)
+
+        val name = sharedPreferences.getString("name", "")
+        val age = sharedPreferences.getInt("age", 0)
+        val town = sharedPreferences.getString("town", "")
+        val sexData = sharedPreferences.getString("sex", "")
+        val totalEmission = sharedPreferences.getFloat("totalEmission", 0.0F)
+
+        if (totalEmission != 0.0F) {
+            GlobalData.total = totalEmission.toDouble()
+            if (name != null) {
+                GlobalData.name = name
+            }
+            GlobalData.age = age
+            if (town != null) {
+                GlobalData.town = town
+            }
+            if (sexData != null) {
+                GlobalData.sex = sexData
+            }
+
+            val eightBlockFragment = EightBlockFragment()
+            val fragmentManager = requireActivity().supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.fragmentContainer, eightBlockFragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        }
 
         val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
         val toast = Toast(requireContext())

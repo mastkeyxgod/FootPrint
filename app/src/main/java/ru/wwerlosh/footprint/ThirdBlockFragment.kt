@@ -76,9 +76,9 @@ class ThirdBlockFragment : Fragment(){
                 return@setOnClickListener
             }
 
-            val finalElectricity = LOSS_FACTOR * electricity.toInt()
-            val finalWaterEmission = WATER_REMISSION_COEFFICIENT * water.toInt()
-            val finalEmission = (finalWaterEmission + finalElectricity) / 52.0
+            val finalElectricity = LOSS_FACTOR * electricity.toFloat()
+            val finalWaterEmission = WATER_REMISSION_COEFFICIENT * water.toFloat()
+            val finalEmission = (finalWaterEmission + finalElectricity)
 
             GlobalData.total += finalEmission
 

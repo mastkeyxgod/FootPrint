@@ -8,6 +8,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -38,6 +39,23 @@ class FifthBlockFragment : Fragment() {
         val fifthButton = view.findViewById<Button>(R.id.fifthBlockConfirm)
         val airCheckBox = view.findViewById<CheckBox>(R.id.airCheckBox)
         val inputAirTextView = view.findViewById<TextView>(R.id.inputTrainTextView)
+
+        val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
+
+        airCheckBox.setOnClickListener {
+            if (airCheckBox.isChecked) {
+                inputAirTextView.startAnimation(fadeOutAnimation)
+                inputAir.startAnimation(fadeOutAnimation)
+                inputAirTextView.visibility = View.GONE
+                inputAir.visibility = View.GONE
+            } else {
+                inputAirTextView.visibility = View.VISIBLE
+                inputAir.visibility = View.VISIBLE
+                inputAirTextView.startAnimation(fadeInAnimation)
+                inputAir.startAnimation(fadeInAnimation)
+            }
+        }
 
         fifthButton.setOnClickListener {
             val inputAirText = inputAir.text.toString();

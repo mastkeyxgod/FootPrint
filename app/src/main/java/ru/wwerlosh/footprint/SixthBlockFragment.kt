@@ -8,6 +8,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -39,6 +40,23 @@ class SixthBlockFragment : Fragment() {
         val inputTrain = view.findViewById<EditText>(R.id.inputMoneyForGoods)
         val trainCheckBox = view.findViewById<CheckBox>(R.id.trainCheckBox)
         val inputTrainTextView = view.findViewById<TextView>(R.id.inputTrainTextView)
+
+        val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
+
+        trainCheckBox.setOnClickListener {
+            if (trainCheckBox.isChecked) {
+                inputTrainTextView.startAnimation(fadeOutAnimation)
+                inputTrain.startAnimation(fadeOutAnimation)
+                inputTrainTextView.visibility = View.GONE
+                inputTrain.visibility = View.GONE
+            } else {
+                inputTrainTextView.visibility = View.VISIBLE
+                inputTrain.visibility = View.VISIBLE
+                inputTrainTextView.startAnimation(fadeInAnimation)
+                inputTrain.startAnimation(fadeInAnimation)
+            }
+        }
 
         sixthButton.setOnClickListener {
             val inputTrainText = inputTrain.text.toString()

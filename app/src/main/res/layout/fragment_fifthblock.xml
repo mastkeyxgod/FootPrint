@@ -72,7 +72,8 @@
             android:layout_marginTop="35dp"
             android:text="@string/AirDescription"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/inputAir"
@@ -87,6 +88,7 @@
             android:inputType="number"
             android:textAlignment="center"
             android:textColorHint="#FFFFFF"
+            android:visibility="visible"
             tools:textColor="#FFFFFF" />
     </LinearLayout>
 

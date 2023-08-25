@@ -18,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import ru.wwerlosh.footprint.util.GlobalData
 
 class SeventhBlockFragment : Fragment() {
@@ -117,6 +118,7 @@ class SeventhBlockFragment : Fragment() {
             fragmentTransaction.replace(R.id.fragmentContainer, eigthBlockFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
+
         }
     }
 }
