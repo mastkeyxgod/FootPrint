@@ -143,6 +143,12 @@ class SecondBlockFragment : Fragment() {
                 val thirdBlockFragment = ThirdBlockFragment()
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
+                fragmentTransaction.setCustomAnimations(
+                    R.anim.fade_in, // Анимация появления для нового фрагмента
+                    R.anim.fade_out, // Анимация затухания для текущего фрагмента
+                    R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
+                    R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                )
                 fragmentTransaction.replace(R.id.fragmentContainer, thirdBlockFragment)
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
@@ -201,6 +207,12 @@ class SecondBlockFragment : Fragment() {
             val thirdBlockFragment = ThirdBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.setCustomAnimations(
+                R.anim.fade_in, // Анимация появления для нового фрагмента
+                R.anim.fade_out, // Анимация затухания для текущего фрагмента
+                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
+                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+            )
             fragmentTransaction.replace(R.id.fragmentContainer, thirdBlockFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()

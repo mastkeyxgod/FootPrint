@@ -1284,6 +1284,12 @@ class FirstBlockFragment : Fragment() {
             val secondBlockFragment = SecondBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.setCustomAnimations(
+                R.anim.fade_in, // Анимация появления для нового фрагмента
+                R.anim.fade_out, // Анимация затухания для текущего фрагмента
+                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
+                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+            )
             fragmentTransaction.replace(R.id.fragmentContainer, secondBlockFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()

@@ -6,6 +6,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -34,10 +36,11 @@ class EightBlockFragment : Fragment() {
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
 
         val sharedPreferences = requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
@@ -80,9 +83,14 @@ class EightBlockFragment : Fragment() {
             val secondBlockFragment = SecondBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.setCustomAnimations(
+                R.anim.fade_in, // Анимация появления для нового фрагмента
+                R.anim.fade_out, // Анимация затухания для текущего фрагмента
+                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
+                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+            )
             fragmentTransaction.replace(R.id.fragmentContainer, secondBlockFragment)
             fragmentTransaction.addToBackStack(null)
-            fragmentManager.popBackStack(R.layout.fragment_eigthblock, FragmentManager.POP_BACK_STACK_INCLUSIVE)
             fragmentTransaction.commit()
         }
 
@@ -103,12 +111,26 @@ class EightBlockFragment : Fragment() {
         val popupView = LayoutInflater.from(requireContext()).inflate(R.layout.conclusion_layout, null)
         val popupWindow = PopupWindow(popupView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, true)
 
+        val popupFadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        val popupFadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
+
         popupView.findViewById<Button>(R.id.closeButton).setOnClickListener {
-            popupWindow.dismiss() // Закрыть всплывающее окно по нажатию на кнопку
+            popupView.startAnimation(popupFadeOutAnimation) // Применяем анимацию затухания к контенту
+            popupFadeOutAnimation.setAnimationListener(object : Animation.AnimationListener {
+                override fun onAnimationStart(animation: Animation?) {}
+
+                override fun onAnimationEnd(animation: Animation?) {
+                    popupWindow.dismiss() // Закрыть всплывающее окно после окончания анимации затухания
+                }
+
+                override fun onAnimationRepeat(animation: Animation?) {}
+            })
         }
 
+        popupView.startAnimation(popupFadeInAnimation) // Применяем анимацию появления к контенту
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0)
     }
+
 
 
 

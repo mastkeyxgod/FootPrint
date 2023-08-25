@@ -80,20 +80,6 @@ class SeventhBlockFragment : Fragment() {
         seventhBlockConfirm.setOnClickListener {
             val money = inputMoneyForGoods.text.toString()
 
-            if (money.isEmpty()) {
-                val text = "*   Сколько вы тратите на продукты в неделю? (руб)"
-                val spannable = SpannableString(text)
-
-                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
-                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
-
-                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
-                spannable.setSpan(colorSpan2, 2, 112, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
-                moneyForGoodsTextView.text = spannable
-                toast.show()
-                return@setOnClickListener
-            }
-
             if (typeOfGoods == 0.0) {
                 val text = "*   Кем вы себя считаете?"
                 val spannable = SpannableString(text)
@@ -102,8 +88,22 @@ class SeventhBlockFragment : Fragment() {
                 val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
 
                 spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
-                spannable.setSpan(colorSpan2, 2, 112, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                spannable.setSpan(colorSpan2, 2, 24, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
                 goodsTextView.text = spannable
+                toast.show()
+                return@setOnClickListener
+            }
+
+            if (money.isEmpty()) {
+                val text = "*   Сколько вы тратите на продукты в неделю? (руб)"
+                val spannable = SpannableString(text)
+
+                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
+                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+
+                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
+                spannable.setSpan(colorSpan2, 2, 50, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                moneyForGoodsTextView.text = spannable
                 toast.show()
                 return@setOnClickListener
             }
@@ -115,6 +115,12 @@ class SeventhBlockFragment : Fragment() {
             val eigthBlockFragment = EightBlockFragment()
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.setCustomAnimations(
+                R.anim.fade_in, // Анимация появления для нового фрагмента
+                R.anim.fade_out, // Анимация затухания для текущего фрагмента
+                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
+                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+            )
             fragmentTransaction.replace(R.id.fragmentContainer, eigthBlockFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
