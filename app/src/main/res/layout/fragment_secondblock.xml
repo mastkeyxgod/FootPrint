@@ -37,7 +37,7 @@
             android:fontFamily="@font/exo_2"
             android:text="У меня нет машины"
             android:textColor="#FDFDFD"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <Spinner
@@ -48,11 +48,13 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="25dp"
             android:background="@drawable/spinner_border"
+            android:dropDownVerticalOffset="8dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
+            android:scrollbarSize="4dp"
             android:textAlignment="center"
             android:visibility="visible"
-            android:dropDownVerticalOffset="8dp" />
+            tools:scrollbarSize="4dp" />
 
         <Spinner
             android:id="@+id/fuelTypeSpinner"
@@ -96,6 +98,7 @@
             android:layout_marginEnd="25dp"
             android:text="Какое расстояние (в среднем) вы проезжаете за день? (в км)"
             android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <EditText
@@ -111,7 +114,8 @@
             android:inputType="number"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textColorHint="#FFFFFF" />
+            android:textColorHint="#FFFFFF"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/inputUsageDaysTextView"
@@ -123,6 +127,7 @@
             android:layout_marginEnd="25dp"
             android:text="Сколько дней в неделю в используете личный транспорт?"
             android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <Spinner
@@ -155,7 +160,7 @@
         android:fontFamily="sans-serif-black"
         android:text="БЛОК 1"
         android:textColor="#04433D"
-        android:textSize="45sp"
+        android:textSize="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -170,6 +175,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="Следующий блок"
         android:textColor="#FFFFFF"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -183,7 +189,7 @@
         android:fontFamily="@font/manrope_semibold"
         android:text="Личный транспорт"
         android:textColor="#04433D"
-        android:textSize="30sp"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView17" />
 

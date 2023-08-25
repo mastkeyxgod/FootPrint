@@ -21,7 +21,7 @@
         android:fontFamily="sans-serif-black"
         android:text="БЛОК 4"
         android:textColor="#04433D"
-        android:textSize="45sp"
+        android:textSize="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
         android:fontFamily="@font/manrope_semibold"
         android:text="Информация по авиаперелетам"
         android:textColor="#04433D"
-        android:textSize="30sp"
+        android:textSize="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -61,7 +61,7 @@
             android:buttonTint="#B8FAF4"
             android:text="Перелетов не было"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <TextView
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="35dp"
             android:text="@string/AirDescription"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:visibility="visible" />
 
@@ -88,6 +88,7 @@
             android:inputType="number"
             android:textAlignment="center"
             android:textColorHint="#FFFFFF"
+            android:textSize="18dp"
             android:visibility="visible"
             tools:textColor="#FFFFFF" />
     </LinearLayout>
@@ -103,6 +104,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="К следующему блоку"
         android:textColor="#FFFFFF"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

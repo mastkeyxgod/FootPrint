@@ -37,7 +37,7 @@
             android:fontFamily="@font/exo_2"
             android:text="Не пользуюсь общественным транспортом"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <Spinner
@@ -78,6 +78,7 @@
             android:fontFamily="@font/exo_2"
             android:text="Какое расстояние (в среднем) вы проезжаете за один день? (в км)"
             android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <EditText
@@ -93,7 +94,8 @@
             android:inputType="number"
             android:textAlignment="center"
             android:textColor="#DFFDFA"
-            android:textColorHint="#DFFDFA" />
+            android:textColorHint="#DFFDFA"
+            android:textSize="18dp" />
 
         <TextView
             android:id="@+id/inputUsageDaysTextView2"
@@ -103,6 +105,7 @@
             android:layout_marginTop="30dp"
             android:text="Сколько дней (в неделю) вы используете общественный транспорт?"
             android:textColor="#FFFFFF"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <Spinner
@@ -135,6 +138,7 @@
         android:fontFamily="@font/archivo_black"
         android:text="К следующему блоку"
         android:textColor="#FFFFFF"
+        android:textSize="14dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -150,7 +154,7 @@
         android:fontFamily="sans-serif-black"
         android:text="БЛОК 3"
         android:textColor="#04433D"
-        android:textSize="45sp"
+        android:textSize="45dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -164,7 +168,7 @@
         android:fontFamily="@font/manrope_semibold"
         android:text="Общественный транспорт"
         android:textColor="#04433D"
-        android:textSize="30sp"
+        android:textSize="30dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

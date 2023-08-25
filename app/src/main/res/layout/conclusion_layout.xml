@@ -25,7 +25,7 @@
             android:fontFamily="@font/exo_2"
             android:text="@string/solutions"
             android:textColor="@android:color/white"
-            android:textSize="14sp"
+            android:textSize="14dp"
             android:textStyle="bold" />
 
         <Button
