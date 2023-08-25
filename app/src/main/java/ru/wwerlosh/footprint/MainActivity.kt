@@ -1,6 +1,7 @@
 package ru.wwerlosh.footprint
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContentProviderCompat.requireContext
@@ -10,6 +11,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
 
         if (savedInstanceState == null) {
             // При запуске приложения добавляем первый фрагмент (firstBlockFragment) в контейнер
