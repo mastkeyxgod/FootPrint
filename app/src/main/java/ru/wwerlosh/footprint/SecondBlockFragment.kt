@@ -27,6 +27,9 @@ import androidx.fragment.app.viewModels
 import ru.wwerlosh.footprint.util.GlobalData
 
 class SecondBlockFragment : Fragment() {
+    var day: String? = null
+    val days = arrayOf("Выберите количество дней","1","2","3","4","5","6","7")
+
 
     private val carFuelData = mapOf(
         "Седан" to mapOf("Дизель" to 0.20419, "Бензин" to 0.27807, "Смешанное топливо" to 0.1448, "Электричество" to 0.0),
@@ -49,9 +52,28 @@ class SecondBlockFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_secondblock, container, false)
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
+        val daysSpinner: Spinner = view.findViewById(R.id.daysSpinner)
+        daysSpinner.setBackgroundResource(R.drawable.spinner_border)
+        val daysTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, days)
+
+        daysSpinner.adapter = daysTypeSpinnerAdapter
+
+        daysSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                day = days[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                day = "Выберите количество дней"
+            }
+
+        }
+
+
+
 
         GlobalData.total = 0.0
 
@@ -109,7 +131,6 @@ class SecondBlockFragment : Fragment() {
 
         val inputMileage = view.findViewById<EditText>(R.id.inputMileage)
         val inputMilTextView = view.findViewById<TextView>(R.id.inputMilTextView)
-        val inputUsageDays = view.findViewById<EditText>(R.id.inputUsageDays)
         val inputUsageDaysTextView = view.findViewById<TextView>(R.id.inputUsageDaysTextView)
         val carCheckBox = view.findViewById<CheckBox>(R.id.carCheckBox)
         val secondLay = view.findViewById<LinearLayout>(R.id.secondLay)
@@ -156,7 +177,7 @@ class SecondBlockFragment : Fragment() {
             }
 
             val mileage = inputMileage.text.toString()
-            val usageDays = inputUsageDays.text.toString()
+            val usageDays = day
             if (selectedCarType == "Выберите тип автомобиля") {
                 toast.show()
                 return@setOnClickListener
@@ -182,7 +203,7 @@ class SecondBlockFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (usageDays.isEmpty()) {
+            if (usageDays == "Выберите количество дней") {
                 val text = "*   Сколько дней в неделю в используете личный транспорт?"
                 val spannable = SpannableString(text)
 
@@ -199,7 +220,7 @@ class SecondBlockFragment : Fragment() {
             if (emissionCoefficient != null) {
                 transportEmission = (emissionCoefficient *
                         inputMileage.text.toString().toDouble() *
-                        inputUsageDays.text.toString().toDouble())
+                        usageDays.toString().toDouble())
             }
             GlobalData.total += transportEmission
 

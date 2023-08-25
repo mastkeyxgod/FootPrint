@@ -105,20 +105,19 @@
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/inputPublicCarUsageDays"
+        <Spinner
+            android:id="@+id/daysSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:alpha="0.5"
-            android:backgroundTint="#DFFDFA"
+            android:alpha="1"
+            android:background="@drawable/spinner_border"
             android:ems="10"
-            android:hint="Дни использования"
             android:inputType="number"
             android:textAlignment="center"
             android:textColor="#DFFDFA"
-            android:textColorHint="#DFFDFA" />
+            android:textColorHint="#DFFDFA"/>
     </LinearLayout>
 
     <Button

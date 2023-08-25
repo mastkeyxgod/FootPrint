@@ -9,6 +9,7 @@ import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewParent
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -30,6 +31,7 @@ class FourthBlockFragment : Fragment(){
     final val BUS_COEFFICIENT = 0.1195
     final val METRO_COEFFICIENT = 0.03694
     var selectedCarType: String? = null
+    var day: String? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,14 +48,18 @@ class FourthBlockFragment : Fragment(){
 
         val publicCarCheckBox = view.findViewById<CheckBox>(R.id.publicCarCheckBox)
         val inputMileage = view.findViewById<EditText>(R.id.inputPublicCarMileage)
-        val inputUsageDays = view.findViewById<EditText>(R.id.inputPublicCarUsageDays)
         val inputMilTextView = view.findViewById<TextView>(R.id.inputMilTextView2)
         val inputUsageDaysTextView = view.findViewById<TextView>(R.id.inputUsageDaysTextView2)
         val secLay = view.findViewById<LinearLayout>(R.id.secLay)
 
         super.onViewCreated(view, savedInstanceState)
         val carTypeSpinner: Spinner = view.findViewById(R.id.publicCarTypeSpinner)
+        val daysSpinner: Spinner = view.findViewById(R.id.daysSpinner)
         carTypeSpinner.setBackgroundResource(R.drawable.spinner_border)
+        daysSpinner.setBackgroundResource(R.drawable.spinner_border)
+
+        val days = arrayOf("Выберите количество дней","1","2","3","4","5","6","7")
+
         val carTypes = arrayOf(
             "Выберите тип транспорта",
             "Такси",
@@ -61,7 +67,11 @@ class FourthBlockFragment : Fragment(){
             "Метро"
         )
         val carTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, carTypes)
+        val daysTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, days)
+
         carTypeSpinner.adapter = carTypeSpinnerAdapter
+        daysSpinner.adapter = daysTypeSpinnerAdapter
+
         carTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 selectedCarType = carTypes[position]
@@ -70,6 +80,17 @@ class FourthBlockFragment : Fragment(){
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 selectedCarType = "Выберите тип транспорта"
             }
+        }
+
+        daysSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                day = days[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                day = "Выберите количество дней"
+            }
+
         }
 
         val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
@@ -92,7 +113,7 @@ class FourthBlockFragment : Fragment(){
         val fourthBlockButton = view.findViewById<Button>(R.id.fourthBlockButton)
         fourthBlockButton.setOnClickListener {
             val mileage = inputMileage.text.toString()
-            val usageDays = inputUsageDays.text.toString()
+            val usageDays = day
 
             if (publicCarCheckBox.isChecked) {
                 val fifthBlockFragment = FifthBlockFragment()
@@ -130,7 +151,7 @@ class FourthBlockFragment : Fragment(){
                 return@setOnClickListener
             }
 
-            if (usageDays.isEmpty()) {
+            if (day == "Выберите количество дней") {
                 val text = "*   Сколько дней в неделю в используете личный транспорт?"
                 val spannable = SpannableString(text)
 
@@ -149,7 +170,7 @@ class FourthBlockFragment : Fragment(){
             else if (selectedCarType == "Метро") 0.03694 else 0.1195
             transportEmission = (emissionCoefficient *
                     inputMileage.text.toString().toDouble() *
-                    inputUsageDays.text.toString().toDouble())
+                    usageDays.toString().toDouble())
 
             GlobalData.total += transportEmission
 
