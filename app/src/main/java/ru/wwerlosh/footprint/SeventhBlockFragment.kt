@@ -27,6 +27,7 @@ class SeventhBlockFragment : Fragment() {
     val JUNIOR_MEAT = 0.0002530
     val FISH = 0.0002118
     val VEGATARIAN = 0.0002066
+
     val VEGAN = 0.0001566
 
     override fun onCreateView(
