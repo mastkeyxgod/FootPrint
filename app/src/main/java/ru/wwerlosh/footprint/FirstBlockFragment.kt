@@ -4,8 +4,10 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.InputFilter
 import android.text.Spannable
 import android.text.SpannableString
+import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
 import android.view.LayoutInflater
@@ -1194,6 +1196,25 @@ class FirstBlockFragment : Fragment() {
         toast.duration = Toast.LENGTH_SHORT
         toast.view = layout
         val inputNameSpace = view.findViewById<EditText>(R.id.inputNameSpace)
+        val noSpaceFilter = object : InputFilter {
+            override fun filter(
+                source: CharSequence?,
+                start: Int,
+                end: Int,
+                dest: Spanned?,
+                dstart: Int,
+                dend: Int
+            ): CharSequence? {
+                // Проверяем каждый символ в строке source
+                for (i in start until end) {
+                    if (Character.isWhitespace(source!![i])) {
+                        return "" // Возвращаем пустую строку, чтобы символ не был добавлен
+                    }
+                }
+                return null // Пропускаем символы без изменений
+            }
+        }
+        inputNameSpace.filters = arrayOf(noSpaceFilter)
         val inputAgeSpace = view.findViewById<EditText>(R.id.inputAgeSpace)
         val sexRadioGroup = view.findViewById<RadioGroup>(R.id.sexRadioGroup)
         val sexTextView = view.findViewById<TextView>(R.id.sexTextView)

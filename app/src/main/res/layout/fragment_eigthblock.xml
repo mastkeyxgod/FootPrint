@@ -28,12 +28,12 @@
 
         <TextView
             android:id="@+id/nameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:text="None"
             android:textColor="#FFFFFF"
-            android:textSize="48dp" />
+            android:textSize="38dp" />
 
         <TextView
             android:id="@+id/textView12"
@@ -41,9 +41,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="15dp"
             android:text="ваш углеродный след за последнюю неделю составил:"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -51,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/linear_background"
         android:orientation="vertical"
@@ -65,8 +65,8 @@
             style="@style/textViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
             android:text="None"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
@@ -90,7 +90,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="104dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
+        android:fontFamily="@font/manrope_medium"
         android:text="None"
         android:textColor="#000000"
         android:textSize="48dp"
@@ -102,6 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:fontFamily="@font/manrope_semibold"
         android:text="КГ CO2"
         android:textColor="#165E57"
         android:textSize="34dp"
