@@ -1,10 +1,8 @@
 package ru.wwerlosh.footprint
 
-import android.content.Context
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,16 +14,17 @@ class MainActivity : AppCompatActivity() {
 
         if (savedInstanceState == null) {
             // При запуске приложения добавляем первый фрагмент (firstBlockFragment) в контейнер
-            val firstBlockFragment = FirstBlockFragment() // Замените FirstBlockFragment на ваш фрагмент
+            val welcomeBlockFragment = WelcomeBlockFragment() // Замените FirstBlockFragment на ваш фрагмент
             val fragmentTransaction = supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragmentContainer, firstBlockFragment)
+            fragmentTransaction.replace(R.id.fragmentContainer, welcomeBlockFragment)
             fragmentTransaction.addToBackStack(null) // Добавьте фрагмент в стек возврата, если нужно
             fragmentTransaction.commit()
         }
     }
 
     override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 1) {
+        if (supportFragmentManager.backStackEntryCount == 1
+            || supportFragmentManager.backStackEntryCount == 8) {
             // Если на первом фрагменте, то закрыть приложение
             finish()
         }

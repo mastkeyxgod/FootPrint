@@ -1160,6 +1160,25 @@ class FirstBlockFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, cities)
         val inputTownSpace: AutoCompleteTextView = view.findViewById(R.id.inputTownSpace)
         inputTownSpace.setAdapter(adapter)
+        val filter = object : InputFilter {
+            override fun filter(
+                source: CharSequence?,
+                start: Int,
+                end: Int,
+                dest: Spanned?,
+                dstart: Int,
+                dend: Int
+            ): CharSequence? {
+                val userInput = (dest?.subSequence(0, dstart).toString() + source?.subSequence(start, end)).toLowerCase()
+                for (city in cities) {
+                    if (city.toLowerCase().startsWith(userInput)) {
+                        return source
+                    }
+                }
+                return ""
+            }
+        }
+        inputTownSpace.filters = arrayOf(filter)
 
 
         val sharedPreferences = requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)

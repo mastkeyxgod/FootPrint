@@ -84,7 +84,7 @@ class SecondBlockFragment : Fragment() {
 
         val carTypeSpinner: Spinner = view.findViewById(R.id.carTypeSpinner)
         val carTypes = arrayOf(
-            "Выберите тип автомобиля",
+            "Выберите тип кузова",
             "Седан",
             "Пикап",
             "Хэтчбек",
