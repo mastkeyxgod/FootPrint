@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-
-
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/conclusionToast"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:background="#9A221E1E"
-    android:gravity="center">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:visibility="visible">
 
+    <!-- Задний серый фон, который всегда остается видимым -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9A221E1E"
+        android:gravity="center"
+        android:orientation="vertical">
 
+        <!-- Содержимое conclusionToast -->
         <LinearLayout
-            android:id="@+id/enterLay"
+            android:id="@+id/conclusionToast"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -44,5 +48,9 @@
                 android:textSize="24sp" />
         </LinearLayout>
 
+    </LinearLayout>
 
-</LinearLayout>
+    <!-- Остальное содержимое, которое может прокручиваться -->
+    <!-- Добавьте остальные элементы, которые вы хотите прокручивать здесь -->
+
+</androidx.core.widget.NestedScrollView>
