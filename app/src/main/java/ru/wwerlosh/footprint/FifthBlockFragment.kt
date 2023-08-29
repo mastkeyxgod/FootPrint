@@ -33,7 +33,7 @@ class FifthBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_exit_root))
         val toastExit = Toast(requireContext())
         toastExit.duration = Toast.LENGTH_SHORT
         toastExit.view = layout2

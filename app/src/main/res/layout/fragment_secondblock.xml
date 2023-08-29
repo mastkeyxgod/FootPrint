@@ -36,6 +36,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18">
 
+            <CheckBox
+                android:id="@+id/carCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:buttonTint="#B8FAF4"
+                android:fontFamily="@font/exo_2"
+                android:gravity="center"
+                android:text="У меня нет машины"
+                android:textColor="#FDFDFD"
+                android:textSize="16dp"
+                android:textStyle="normal" />
+
             <Spinner
                 android:id="@+id/carTypeSpinner"
                 android:layout_width="match_parent"
@@ -65,22 +81,6 @@
                 android:paddingEnd="10dp"
                 android:textAlignment="center"
                 android:visibility="visible" />
-
-            <CheckBox
-                android:id="@+id/carCheckBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:buttonTint="#B8FAF4"
-                android:fontFamily="@font/exo_2"
-                android:gravity="center"
-                android:text="У меня нет машины"
-                android:textColor="#FDFDFD"
-                android:textSize="16dp"
-                android:textStyle="normal" />
 
         </LinearLayout>
 

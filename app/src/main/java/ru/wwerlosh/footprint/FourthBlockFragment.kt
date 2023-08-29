@@ -3,14 +3,12 @@ package ru.wwerlosh.footprint
 import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewParent
 import android.view.animation.AnimationUtils
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -22,10 +20,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import ru.wwerlosh.footprint.util.GlobalData
 
 class FourthBlockFragment : Fragment(){
@@ -44,7 +39,7 @@ class FourthBlockFragment : Fragment(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_exit_root))
         val toastExit = Toast(requireContext())
         toastExit.duration = Toast.LENGTH_SHORT
         toastExit.view = layout2

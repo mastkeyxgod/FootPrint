@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toast_root"
+    android:id="@+id/toast_exit_root"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:background="@drawable/round_corners"
@@ -9,13 +9,21 @@
     android:orientation="horizontal"
     android:padding="10dp">
 
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/exit_image" />
+
     <TextView
         android:id="@+id/toastTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:fontFamily="@font/exo_2"
-        android:text="Нажмите кнопку назад ещё раз для выхода"
+        android:text="Нажмите еще раз чтобы выйти"
         android:textColor="#FAFAFA"
         android:textSize="16sp" />
 </LinearLayout>

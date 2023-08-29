@@ -2,7 +2,6 @@ package ru.wwerlosh.footprint
 
 import android.content.Context
 import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.InputFilter
@@ -10,7 +9,6 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
-import android.text.style.StyleSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,10 +20,7 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import org.w3c.dom.Text
 import ru.wwerlosh.footprint.util.GlobalData
 
 class FirstBlockFragment : Fragment() {
@@ -43,7 +38,7 @@ class FirstBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_exit_root))
         val toastExit = Toast(requireContext())
         toastExit.duration = Toast.LENGTH_SHORT
         toastExit.view = layout2
