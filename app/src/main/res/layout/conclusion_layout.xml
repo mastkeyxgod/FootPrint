@@ -25,7 +25,10 @@
             android:background="@drawable/popup_background"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="50dp">
+            android:paddingStart="30dp"
+            android:paddingTop="50dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="50dp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -34,7 +37,7 @@
                 android:text="@string/solutions"
                 android:textColor="@android:color/white"
                 android:textSize="14dp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <Button
                 android:id="@+id/closeButton"

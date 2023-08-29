@@ -26,29 +26,15 @@
             android:id="@+id/firstLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/linear_background"
             android:orientation="vertical"
             android:paddingBottom="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView18">
-
-            <CheckBox
-                android:id="@+id/carCheckBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="25dp"
-                android:buttonTint="#B8FAF4"
-                android:fontFamily="@font/exo_2"
-                android:text="У меня нет машины"
-                android:textColor="#FDFDFD"
-                android:textSize="16dp"
-                android:textStyle="bold" />
 
             <Spinner
                 android:id="@+id/carTypeSpinner"
@@ -80,15 +66,31 @@
                 android:textAlignment="center"
                 android:visibility="visible" />
 
+            <CheckBox
+                android:id="@+id/carCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:buttonTint="#B8FAF4"
+                android:fontFamily="@font/exo_2"
+                android:gravity="center"
+                android:text="У меня нет машины"
+                android:textColor="#FDFDFD"
+                android:textSize="16dp"
+                android:textStyle="normal" />
+
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/secondLay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/linear_background"
             android:orientation="vertical"
             android:paddingBottom="20dp"
@@ -107,8 +109,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
                 android:text="Какое расстояние (в среднем) вы проезжаете за день? (в км)"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <EditText
@@ -120,6 +122,7 @@
                 android:alpha="0.5"
                 android:backgroundTint="#FFFFFF"
                 android:ems="10"
+                android:fontFamily="@font/exo_2"
                 android:hint="Введите расстояние"
                 android:inputType="number"
                 android:textAlignment="center"
@@ -136,8 +139,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="25dp"
                 android:text="Сколько дней в неделю в используете личный транспорт?"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <Spinner
@@ -167,10 +170,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="sans-serif-black"
-            android:text="БЛОК 1"
+            android:fontFamily="@font/exo_2"
+            android:text="ЭТАП 1"
             android:textColor="#04433D"
             android:textSize="45dp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -183,10 +187,10 @@
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="50dp"
             android:background="@drawable/round_corners"
-            android:fontFamily="@font/archivo_black"
+            android:fontFamily="@font/exo_2"
             android:text="Следующий блок"
             android:textColor="#FFFFFF"
-            android:textSize="14dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -200,8 +204,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:fontFamily="@font/manrope_semibold"
-            android:text="Личный транспорт"
+            android:fontFamily="@font/exo_2"
+            android:text="личный транспорт"
             android:textColor="#04433D"
             android:textSize="30dp"
             app:layout_constraintStart_toStartOf="parent"
