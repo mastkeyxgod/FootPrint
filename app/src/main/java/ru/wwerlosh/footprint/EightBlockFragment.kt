@@ -2,6 +2,7 @@ package ru.wwerlosh.footprint
 
 import android.content.Context
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -48,6 +49,14 @@ class EightBlockFragment : Fragment() {
         toastExit.view = layout2
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                val timer = object: CountDownTimer(5000, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {}
+
+                    override fun onFinish() {
+                        backButtonPressCount = 0
+                    }
+                }
+                timer.start()
                 if (backButtonPressCount < requiredBackButtonPresses - 1) {
                     backButtonPressCount++
                     toastExit.show()

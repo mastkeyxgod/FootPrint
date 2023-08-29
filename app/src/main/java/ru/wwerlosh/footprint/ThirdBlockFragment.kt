@@ -2,6 +2,7 @@ package ru.wwerlosh.footprint
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -41,6 +42,14 @@ class ThirdBlockFragment : Fragment(){
         toastExit.view = layout2
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
+                val timer = object: CountDownTimer(5000, 1000) {
+                    override fun onTick(millisUntilFinished: Long) {}
+
+                    override fun onFinish() {
+                        backButtonPressCount = 0
+                    }
+                }
+                timer.start()
                 if (backButtonPressCount < requiredBackButtonPresses - 1) {
                     backButtonPressCount++
                     toastExit.show()
