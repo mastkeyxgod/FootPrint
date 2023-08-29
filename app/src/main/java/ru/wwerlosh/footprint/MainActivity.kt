@@ -2,14 +2,18 @@ package ru.wwerlosh.footprint
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+
 
 
         if (savedInstanceState == null) {
@@ -22,12 +26,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 1
-            || supportFragmentManager.backStackEntryCount == 8) {
-            // Если на первом фрагменте, то закрыть приложение
-            finish()
-        }
-
-    }
+//    override fun onBackPressed() {
+//        if (supportFragmentManager.backStackEntryCount == 1
+//            || supportFragmentManager.backStackEntryCount == 8) {
+//            // Если на первом фрагменте, то закрыть приложение
+//            finish()
+//        }
+//
+//    }
 }

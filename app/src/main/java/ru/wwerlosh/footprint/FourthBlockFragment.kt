@@ -20,6 +20,7 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -27,6 +28,8 @@ import androidx.fragment.app.viewModels
 import ru.wwerlosh.footprint.util.GlobalData
 
 class FourthBlockFragment : Fragment(){
+    private var backButtonPressCount = 0
+    private val requiredBackButtonPresses = 2
     final val TAXI_COEFFICIENT = 0.20369
     final val BUS_COEFFICIENT = 0.1195
     final val METRO_COEFFICIENT = 0.03694
@@ -40,6 +43,22 @@ class FourthBlockFragment : Fragment(){
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val toastExit = Toast(requireContext())
+        toastExit.duration = Toast.LENGTH_SHORT
+        toastExit.view = layout2
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (backButtonPressCount < requiredBackButtonPresses - 1) {
+                    backButtonPressCount++
+                    toastExit.show()
+                } else {
+                    isEnabled = false
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
         val toast = Toast(requireContext())

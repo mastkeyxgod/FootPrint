@@ -12,12 +12,16 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import ru.wwerlosh.footprint.util.GlobalData
 
 class ThirdBlockFragment : Fragment(){
+
+    private var backButtonPressCount = 0
+    private val requiredBackButtonPresses = 2
 
     final val LOSS_FACTOR = 0.23314
     final val WATER_REMISSION_COEFFICIENT = 0.344
@@ -31,6 +35,22 @@ class ThirdBlockFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val toastExit = Toast(requireContext())
+        toastExit.duration = Toast.LENGTH_SHORT
+        toastExit.view = layout2
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (backButtonPressCount < requiredBackButtonPresses - 1) {
+                    backButtonPressCount++
+                    toastExit.show()
+                } else {
+                    isEnabled = false
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
         val toast = Toast(requireContext())

@@ -20,12 +20,16 @@ import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import org.w3c.dom.Text
 import ru.wwerlosh.footprint.util.GlobalData
 
 class FirstBlockFragment : Fragment() {
+    private var backButtonPressCount = 0
+    private val requiredBackButtonPresses = 2
     override fun onCreateView(
 
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +42,22 @@ class FirstBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val toastExit = Toast(requireContext())
+        toastExit.duration = Toast.LENGTH_SHORT
+        toastExit.view = layout2
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (backButtonPressCount < requiredBackButtonPresses - 1) {
+                    backButtonPressCount++
+                    toastExit.show()
+                } else {
+                    isEnabled = false
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         val cities = arrayOf("Абаза",
             "Абакан",

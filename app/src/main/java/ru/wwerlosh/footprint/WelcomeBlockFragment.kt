@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 
 class WelcomeBlockFragment : Fragment() {
+    private var backButtonPressCount = 0
+    private val requiredBackButtonPresses = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -19,6 +22,19 @@ class WelcomeBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (backButtonPressCount < requiredBackButtonPresses - 1) {
+                    backButtonPressCount++
+//                        showToast("Нажмите кнопку назад ещё раз для выхода")
+                } else {
+                    isEnabled = false
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.welcome_fade_in)
 

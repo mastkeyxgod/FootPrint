@@ -14,11 +14,14 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import ru.wwerlosh.footprint.util.GlobalData
 
 class SixthBlockFragment : Fragment() {
+    private var backButtonPressCount = 0
+    private val requiredBackButtonPresses = 2
     final val TRAIN_COEFFICIENT = 0.03694
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +33,22 @@ class SixthBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val toastExit = Toast(requireContext())
+        toastExit.duration = Toast.LENGTH_SHORT
+        toastExit.view = layout2
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (backButtonPressCount < requiredBackButtonPresses - 1) {
+                    backButtonPressCount++
+                    toastExit.show()
+                } else {
+                    isEnabled = false
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
         val toast = Toast(requireContext())

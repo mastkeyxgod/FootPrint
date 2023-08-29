@@ -11,6 +11,8 @@ import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.PopupWindow
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import kotlinx.coroutines.CoroutineScope
@@ -24,6 +26,8 @@ import ru.wwerlosh.footprint.util.GlobalData
 
 class EightBlockFragment : Fragment() {
 
+    private var backButtonPressCount = 0
+    private val requiredBackButtonPresses = 2
     private val AVG_VALUE: Double = 44.08
 
     private val coroutineScope = CoroutineScope(Dispatchers.Main)
@@ -38,6 +42,22 @@ class EightBlockFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val layout2 = layoutInflater.inflate(R.layout.toast_exit, requireView().findViewById(R.id.toast_root))
+        val toastExit = Toast(requireContext())
+        toastExit.duration = Toast.LENGTH_SHORT
+        toastExit.view = layout2
+        val onBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (backButtonPressCount < requiredBackButtonPresses - 1) {
+                    backButtonPressCount++
+                    toastExit.show()
+                } else {
+                    isEnabled = false
+                    requireActivity().finish()
+                }
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
         val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
         val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
