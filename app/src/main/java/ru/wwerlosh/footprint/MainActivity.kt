@@ -2,8 +2,8 @@ package ru.wwerlosh.footprint
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import ru.wwerlosh.footprint.fragments.WelcomeBlockFragment
 
 class MainActivity : AppCompatActivity() {
 

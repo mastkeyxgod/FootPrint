@@ -1,4 +1,4 @@
-package ru.wwerlosh.footprint
+package ru.wwerlosh.footprint.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -17,12 +17,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import ru.wwerlosh.footprint.R
 import ru.wwerlosh.footprint.util.GlobalData
 
 class SixthBlockFragment : Fragment() {
     private var backButtonPressCount = 0
     private val requiredBackButtonPresses = 2
-    final val TRAIN_COEFFICIENT = 0.03694
+    private val TRAIN_COEFFICIENT = 0.03694
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -95,8 +96,8 @@ class SixthBlockFragment : Fragment() {
                 fragmentTransaction.setCustomAnimations(
                     R.anim.fade_in, // Анимация появления для нового фрагмента
                     R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                    R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                    R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                    R.anim.fade_in,
+                    R.anim.fade_out
                 )
                 fragmentTransaction.replace(R.id.fragmentContainer, seventhBlockFragment)
                 fragmentTransaction.addToBackStack(null)
@@ -126,10 +127,10 @@ class SixthBlockFragment : Fragment() {
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(
-                R.anim.fade_in, // Анимация появления для нового фрагмента
-                R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                R.anim.fade_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.fade_out
             )
             fragmentTransaction.replace(R.id.fragmentContainer, seventhBlockFragment)
             fragmentTransaction.addToBackStack(null)

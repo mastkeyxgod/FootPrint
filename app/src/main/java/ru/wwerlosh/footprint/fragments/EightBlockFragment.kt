@@ -1,4 +1,4 @@
-package ru.wwerlosh.footprint
+package ru.wwerlosh.footprint.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -21,8 +21,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import ru.wwerlosh.footprint.R
 import ru.wwerlosh.footprint.data.User
 import ru.wwerlosh.footprint.util.GlobalData
+import ru.wwerlosh.footprint.util.SQLHelper
 
 class EightBlockFragment : Fragment() {
 
@@ -67,9 +69,6 @@ class EightBlockFragment : Fragment() {
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
 
-        val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-        val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
-
         val sharedPreferences = requireContext().getSharedPreferences("user_data", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("name", GlobalData.name)
@@ -112,10 +111,10 @@ class EightBlockFragment : Fragment() {
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(
-                R.anim.fade_in, // Анимация появления для нового фрагмента
-                R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                R.anim.fade_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.fade_out
             )
             fragmentTransaction.replace(R.id.fragmentContainer, secondBlockFragment)
             fragmentTransaction.addToBackStack(null)

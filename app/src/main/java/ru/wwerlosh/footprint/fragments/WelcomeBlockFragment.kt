@@ -1,4 +1,4 @@
-package ru.wwerlosh.footprint
+package ru.wwerlosh.footprint.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,8 +9,12 @@ import android.widget.Button
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import ru.wwerlosh.footprint.R
 
 class WelcomeBlockFragment : Fragment() {
+    private val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(),
+        R.anim.welcome_fade_in
+    )
     private var backButtonPressCount = 0
     private val requiredBackButtonPresses = 1
     override fun onCreateView(
@@ -27,7 +31,6 @@ class WelcomeBlockFragment : Fragment() {
             override fun handleOnBackPressed() {
                 if (backButtonPressCount < requiredBackButtonPresses - 1) {
                     backButtonPressCount++
-//                        showToast("Нажмите кнопку назад ещё раз для выхода")
                 } else {
                     isEnabled = false
                     requireActivity().finish()
@@ -35,8 +38,6 @@ class WelcomeBlockFragment : Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-
-        val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.welcome_fade_in)
 
         val welcomeLayout = view.findViewById<LinearLayout>(R.id.welcomeLayout)
         welcomeLayout.visibility = View.VISIBLE
@@ -46,16 +47,16 @@ class WelcomeBlockFragment : Fragment() {
         welcomeConfirmButton.startAnimation(fadeInAnimation)
 
         welcomeConfirmButton.setOnClickListener {
-            val firstBlockFragment = FirstBlockFragment() // Замените FirstBlockFragment на ваш фрагмент
+            val firstBlockFragment = FirstBlockFragment()
             val fragmentTransaction = requireActivity().supportFragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(
-                R.anim.fade_in, // Анимация появления для нового фрагмента
-                R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                R.anim.fade_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.fade_out
             )
             fragmentTransaction.replace(R.id.fragmentContainer, firstBlockFragment)
-            fragmentTransaction.addToBackStack(null) // Добавьте фрагмент в стек возврата, если нужно
+            fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
 

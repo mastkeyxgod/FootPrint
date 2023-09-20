@@ -1,4 +1,4 @@
-    package ru.wwerlosh.footprint
+    package ru.wwerlosh.footprint.fragments
 
     import android.graphics.Color
     import android.os.Bundle
@@ -21,26 +21,21 @@
     import android.widget.Toast
     import androidx.activity.OnBackPressedCallback
     import androidx.fragment.app.Fragment
+    import ru.wwerlosh.footprint.R
+    import ru.wwerlosh.footprint.util.CarFuelDB
     import ru.wwerlosh.footprint.util.GlobalData
 
     class SecondBlockFragment : Fragment() {
+        private val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+        private val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
+
         private var backButtonPressCount = 0
         private val requiredBackButtonPresses = 2
         var day: String? = null
         val days = arrayOf("Выберите количество дней","1","2","3","4","5","6","7")
 
-
-        private val carFuelData = mapOf(
-            "Седан" to mapOf("Дизель" to 0.20419, "Бензин" to 0.27807, "Смешанное топливо" to 0.1448, "Электричество" to 0.0),
-            "Пикап" to mapOf("Дизель" to 0.20419, "Бензин" to 0.27807, "Смешанное топливо" to 0.1448, "Электричество" to 0.0),
-            "Хэтчбек" to mapOf("Дизель" to 0.16637, "Бензин" to 0.18659, "Смешанное топливо" to 0.10698, "Электричество" to 0.0),
-            "Универсал" to mapOf("Дизель" to 0.16637, "Бензин" to 0.18659, "Смешанное топливо" to 0.10698, "Электричество" to 0.0),
-            "Лифтбек" to mapOf("Дизель" to 0.16637, "Бензин" to 0.18659, "Смешанное топливо" to 0.10698, "Электричество" to 0.0),
-            "Минивен" to mapOf("Дизель" to 0.13721, "Бензин" to 0.14836, "Смешанное топливо" to 0.10275, "Электричество" to 0.0),
-            "Купе" to mapOf("Дизель" to 0.20419, "Бензин" to 0.27807, "Смешанное топливо" to 0.1448, "Электричество" to 0.0),
-            "Кроссовер" to mapOf("Дизель" to 0.16637, "Бензин" to 0.18659, "Смешанное топливо" to 0.10698, "Электричество" to 0.0),
-            "Мотоцикл" to mapOf("Дизель" to 0.0, "Бензин" to 0.08277, "Смешанное топливо" to 0.0, "Электричество" to 0.0)
-        )
+        private val carFuelDB = CarFuelDB()
+        private val carFuelData = carFuelDB.getData()
 
         var transportEmission = 0.0
         var selectedFuelType: String? = null
@@ -80,7 +75,8 @@
 
             val daysSpinner: Spinner = view.findViewById(R.id.daysSpinner)
             daysSpinner.setBackgroundResource(R.drawable.spinner_border)
-            val daysTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, days)
+            val daysTypeSpinnerAdapter = ArrayAdapter(requireContext(),
+                R.layout.spinner_layout, days)
 
             daysSpinner.adapter = daysTypeSpinnerAdapter
 
@@ -95,12 +91,7 @@
 
             }
 
-
-
-
             GlobalData.total = 0.0
-
-
 
             val layout = layoutInflater.inflate(R.layout.toast_layout, requireView().findViewById(R.id.toast_root))
             val toast = Toast(requireContext())
@@ -108,19 +99,9 @@
             toast.view = layout
 
             val carTypeSpinner: Spinner = view.findViewById(R.id.carTypeSpinner)
-            val carTypes = arrayOf(
-                "Выберите тип кузова",
-                "Седан",
-                "Пикап",
-                "Хэтчбек",
-                "Универсал",
-                "Лифтбек",
-                "Минивен",
-                "Купе",
-                "Кроссовер",
-                "Мотоцикл"
-            )
-            val carTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, carTypes)
+            val carTypes = carFuelDB.getCarTypes()
+            val carTypeSpinnerAdapter = ArrayAdapter(requireContext(),
+                R.layout.spinner_layout, carTypes)
             carTypeSpinner.adapter = carTypeSpinnerAdapter
             carTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -133,14 +114,9 @@
             }
 
             val fuelTypeSpinner: Spinner = view.findViewById(R.id.fuelTypeSpinner)
-            val fuelTypes = arrayOf(
-                "Выберите тип топлива",
-                "Дизель",
-                "Бензин",
-                "Смешанное топливо",
-                "Электричество"
-            )
-            val fuelTypeSpinnerAdapter = ArrayAdapter(requireContext(), R.layout.spinner_layout, fuelTypes)
+            val fuelTypes = carFuelDB.getFuelTypes()
+            val fuelTypeSpinnerAdapter = ArrayAdapter(requireContext(),
+                R.layout.spinner_layout, fuelTypes)
             fuelTypeSpinner.adapter = fuelTypeSpinnerAdapter
             fuelTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -152,17 +128,12 @@
                 }
             }
 
-
-
             val inputMileage = view.findViewById<EditText>(R.id.inputMileage)
             val inputMilTextView = view.findViewById<TextView>(R.id.inputMilTextView)
             val inputUsageDaysTextView = view.findViewById<TextView>(R.id.inputUsageDaysTextView)
             val carCheckBox = view.findViewById<CheckBox>(R.id.carCheckBox)
             val secondLay = view.findViewById<LinearLayout>(R.id.secondLay)
             val secondBlockButton = view.findViewById<Button>(R.id.secondBlockButton)
-
-            val fadeInAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-            val fadeOutAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_out)
 
             carCheckBox.setOnClickListener {
                 if (carCheckBox.isChecked) {
@@ -190,10 +161,10 @@
                     val fragmentManager = requireActivity().supportFragmentManager
                     val fragmentTransaction = fragmentManager.beginTransaction()
                     fragmentTransaction.setCustomAnimations(
-                        R.anim.fade_in, // Анимация появления для нового фрагмента
-                        R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                        R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                        R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                        R.anim.fade_in,
+                        R.anim.fade_out,
+                        R.anim.fade_in,
+                        R.anim.fade_out
                     )
                     fragmentTransaction.replace(R.id.fragmentContainer, thirdBlockFragment)
                     fragmentTransaction.addToBackStack(null)
@@ -221,8 +192,8 @@
                     val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
                     val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
 
-                    spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
-                    spannable.setSpan(colorSpan2, 2, 62, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                    spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannable.setSpan(colorSpan2, 2, 62, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     inputMilTextView.text = spannable
                     toast.show()
                     return@setOnClickListener
@@ -232,11 +203,11 @@
                     val text = "*   Сколько дней в неделю в используете личный транспорт?"
                     val spannable = SpannableString(text)
 
-                    val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
-                    val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+                    val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54))
+                    val colorSpan2 = ForegroundColorSpan(Color.WHITE)
 
-                    spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
-                    spannable.setSpan(colorSpan2, 2, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                    spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    spannable.setSpan(colorSpan2, 2, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                     inputUsageDaysTextView.text = spannable
                     toast.show()
                     return@setOnClickListener
@@ -254,10 +225,10 @@
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.setCustomAnimations(
-                    R.anim.fade_in, // Анимация появления для нового фрагмента
-                    R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                    R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                    R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                    R.anim.fade_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.fade_out
                 )
                 fragmentTransaction.replace(R.id.fragmentContainer, thirdBlockFragment)
                 fragmentTransaction.addToBackStack(null)

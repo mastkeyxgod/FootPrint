@@ -1,4 +1,4 @@
-package ru.wwerlosh.footprint
+package ru.wwerlosh.footprint.fragments
 
 import android.graphics.Color
 import android.os.Bundle
@@ -21,14 +21,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import ru.wwerlosh.footprint.R
 import ru.wwerlosh.footprint.util.GlobalData
 
 class FourthBlockFragment : Fragment(){
     private var backButtonPressCount = 0
     private val requiredBackButtonPresses = 2
-    final val TAXI_COEFFICIENT = 0.20369
-    final val BUS_COEFFICIENT = 0.1195
-    final val METRO_COEFFICIENT = 0.03694
+
     var selectedCarType: String? = null
     var day: String? = null
     override fun onCreateView(
@@ -143,10 +142,10 @@ class FourthBlockFragment : Fragment(){
                 val fragmentManager = requireActivity().supportFragmentManager
                 val fragmentTransaction = fragmentManager.beginTransaction()
                 fragmentTransaction.setCustomAnimations(
-                    R.anim.fade_in, // Анимация появления для нового фрагмента
-                    R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                    R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                    R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                    R.anim.fade_in,
+                    R.anim.fade_out,
+                    R.anim.fade_in,
+                    R.anim.fade_out
                 )
                 fragmentTransaction.replace(R.id.fragmentContainer, fifthBlockFragment)
                 fragmentTransaction.addToBackStack(null)
@@ -164,11 +163,11 @@ class FourthBlockFragment : Fragment(){
                 val text = "*   Какое расстояние (в среднем) вы проезжаете за день? (в км)"
                 val spannable = SpannableString(text)
 
-                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
-                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54))
+                val colorSpan2 = ForegroundColorSpan(Color.WHITE)
 
-                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
-                spannable.setSpan(colorSpan2, 2, 62, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannable.setSpan(colorSpan2, 2, 62, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 inputMilTextView.text = spannable
                 toast.show()
                 return@setOnClickListener
@@ -178,11 +177,11 @@ class FourthBlockFragment : Fragment(){
                 val text = "*   Сколько дней в неделю в используете личный транспорт?"
                 val spannable = SpannableString(text)
 
-                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54)) // Цвет для части 1
-                val colorSpan2 = ForegroundColorSpan(Color.WHITE) // Цвет для части 2
+                val colorSpan1 = ForegroundColorSpan(Color.rgb(199, 54, 54))
+                val colorSpan2 = ForegroundColorSpan(Color.WHITE)
 
-                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 1
-                spannable.setSpan(colorSpan2, 2, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE) // Применение стиля к части 2
+                spannable.setSpan(colorSpan1, 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannable.setSpan(colorSpan2, 2, 56, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
                 inputUsageDaysTextView.text = spannable
                 toast.show()
                 return@setOnClickListener
@@ -201,10 +200,10 @@ class FourthBlockFragment : Fragment(){
             val fragmentManager = requireActivity().supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()
             fragmentTransaction.setCustomAnimations(
-                R.anim.fade_in, // Анимация появления для нового фрагмента
-                R.anim.fade_out, // Анимация затухания для текущего фрагмента
-                R.anim.fade_in, // Анимация появления для текущего фрагмента (обратная анимация)
-                R.anim.fade_out // Анимация затухания для нового фрагмента (обратная анимация)
+                R.anim.fade_in,
+                R.anim.fade_out,
+                R.anim.fade_in,
+                R.anim.fade_out
             )
             fragmentTransaction.replace(R.id.fragmentContainer, fifthBlockFragment)
             fragmentTransaction.addToBackStack(null)

@@ -1,4 +1,4 @@
-package ru.wwerlosh.footprint
+package ru.wwerlosh.footprint.util
 
 import ru.wwerlosh.footprint.data.User
 import java.sql.DriverManager
@@ -10,8 +10,8 @@ object SQLHelper {
         try {
             val c = DriverManager.getConnection(
                 "jdbc:mysql://ilyafeue.beget.tech:3306/ilyafeue_footapp",
-                "ilyafeue_footapp",
-                "FootApp1"
+                "login",
+                "password"
             )
             val s = c.createStatement()
             val sql = "INSERT INTO user (total, name, town, age, sex) VALUES ('${user.total}', '${user.name}', '${user.town}', '${user.age}', '${user.sex}')"
