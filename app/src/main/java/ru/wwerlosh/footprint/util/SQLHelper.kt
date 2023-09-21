@@ -9,7 +9,7 @@ object SQLHelper {
     fun connection(user: User) {
         try {
             val c = DriverManager.getConnection(
-                "jdbc:mysql://ilyafeue.beget.tech:3306/ilyafeue_footapp",
+                "BDUrl",
                 "login",
                 "password"
             )
